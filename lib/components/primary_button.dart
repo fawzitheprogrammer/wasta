@@ -3,17 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wasta/components/colors.dart';
 
-Widget primaryButton(
-    {required String label,
-    required Color backgroundColor,
-    required Size size,
-    Function()? onPressed,
-    double? shadow,
-    Color? shadowColor,
-    double? borderWidth,
-    Color? borderColor,
-    Color? textColor,
-    bool isLoading = false}) {
+Widget primaryButton({
+  required String label,
+  required Color backgroundColor,
+  required Size size,
+  Function()? onPressed,
+  double? shadow,
+  Color? shadowColor,
+  Color? overlayColor = Colors.white30,
+  double? borderWidth,
+  Color? borderColor,
+  Color? textColor,
+  bool isLoading = false,
+}) {
   return Ink(
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
@@ -25,9 +27,8 @@ Widget primaryButton(
         )),
     child: TextButton(
       style: ButtonStyle(
-        overlayColor: MaterialStatePropertyAll(secondaryColor),
-        //backgroundColor: MaterialStateProperty.all(backgroundColor),
-
+        overlayColor: MaterialStatePropertyAll(overlayColor),
+        backgroundColor: MaterialStateProperty.all(backgroundColor),
         minimumSize: MaterialStatePropertyAll(
           size,
         ),
@@ -42,8 +43,9 @@ Widget primaryButton(
         ),
         side: MaterialStatePropertyAll(
           BorderSide(
-              color: borderColor ?? Colors.transparent,
-              width: borderWidth ?? 0),
+            color: borderColor ?? Colors.transparent,
+            width: borderWidth ?? 0,
+          ),
         ),
       ),
       onPressed: onPressed,

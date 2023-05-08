@@ -2,6 +2,9 @@ import 'package:wasta/components/components_barrel.dart';
 import 'package:wasta/navigation/navigator.dart';
 import 'package:wasta/public_packages.dart';
 import 'package:wasta/screens/login_screen.dart';
+import 'package:wasta/screens/role_screen.dart';
+
+import '../shared_preferences/screens_state_manager.dart';
 
 //import '../components/primary_button.dart';
 
@@ -27,8 +30,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     // One method to set [pageOrderId] and open another screen
     appRouting() {
-      //ScreenStateManager.setPageOrderID(1);
-      getPage(context, const LoginScreen());
+      ScreenStateManager.setPageOrderID(1);
+      getPage(context, const RoleScreen());
     }
 
     onboardingInfo.forEach(((key, value) {

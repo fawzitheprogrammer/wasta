@@ -68,6 +68,7 @@ class MyTheme {
       onPrimary: darkGrey2,
       primary: backgroundGrey2,
       primaryContainer: const Color.fromARGB(255, 236, 236, 236),
+      background: primaryBlue,
     ),
     textSelectionTheme: TextSelectionThemeData(
       //cursorColor: Green,
@@ -85,6 +86,7 @@ class MyTheme {
         0xff242124,
       ),
       primaryContainer: const Color.fromARGB(255, 31, 31, 31),
+      //background: primaryBlue,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: const Color(0xff242124),

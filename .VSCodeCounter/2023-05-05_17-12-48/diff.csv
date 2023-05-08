@@ -1,0 +1,21 @@
+"filename", "language", "Dart", "comment", "blank", "total"
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\components\firebase_vars.dart", "Dart", 2, 0, 2, 4
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\components\progress_indicator.dart", "Dart", 10, 0, 3, 13
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\components\snack_bar.dart", "Dart", 3, 0, 0, 3
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\components\textfield.dart", "Dart", 3, 0, 0, 3
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\main.dart", "Dart", 13, 0, 0, 13
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\models\appointments.dart", "Dart", 80, 2, 4, 86
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\models\experts_model.dart", "Dart", -4, 0, 1, -3
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\navigation\navigator.dart", "Dart", 7, 0, 1, 8
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\providers\appointment_provider.dart", "Dart", 243, 47, 31, 321
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\providers\auth_provider.dart", "Dart", -1, 0, 0, -1
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\providers\slider_provider.dart", "Dart", 9, 0, 4, 13
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\providers\time_of_day.dart", "Dart", 16, 0, 13, 29
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\professionals_screen\expert_information_screen.dart", "Dart", -68, 61, -1, -8
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\users_screen\appointment_screen copy.dart", "Dart", 373, 23, 17, 413
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\users_screen\home_screen.dart", "Dart", 11, -2, 0, 9
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\users_screen\list_of_users.dart", "Dart", 26, 2, 6, 34
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\users_screen\search_results.dart", "Dart", 127, 3, 11, 141
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\users_screen\success_screen.dart", "Dart", 67, 2, 9, 78
+"g:\Local Disk F\Source Codes\Flutter\wasta\lib\screens\users_screen\user_screen.dart", "Dart", 170, -8, 3, 165
+"Total", "-", 1087, 130, 104, 1321

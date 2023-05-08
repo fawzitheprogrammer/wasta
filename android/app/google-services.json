@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "627505729716",
+    "project_id": "wasta-8d4f4",
+    "storage_bucket": "wasta-8d4f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627505729716:android:b00928b329e03b0ea307e1",
+        "android_client_info": {
+          "package_name": "com.wasta.platform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627505729716-pti9kooq0jjdnn74mmq9oebqc91vrngf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTRPk7dQZB0U9ijcNg457RsTHdm9Gt0Cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627505729716-pti9kooq0jjdnn74mmq9oebqc91vrngf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

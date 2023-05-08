@@ -1,6 +1,9 @@
 import 'package:wasta/components/components_barrel.dart';
 import 'package:wasta/public_packages.dart';
 import 'package:wasta/screens/login_screen.dart';
+import 'package:wasta/shared_preferences/role.dart';
+import 'package:wasta/shared_preferences/screens_state_manager.dart';
+
 
 class RoleScreen extends StatelessWidget {
   const RoleScreen({super.key});
@@ -9,30 +12,31 @@ class RoleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    //Role role = Role();
+    Role role = Role();
 
-    // goToPage(bool isUser) {
-    //   Role.setIsUser(isUser: isUser).then(
-    //     (value) {
-    //       ScreenStateManager.setPageOrderID(2);
-    //       return Navigator.pushAndRemoveUntil(
-    //           context,
-    //           MaterialPageRoute(
-    //             builder: (context) => const LoginScreen(),
-    //           ),
-    //           (route) => false);
-    //     },
-    //   );
-    // }
-
-    goToPage() {
-      return Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginScreen(),
-          ),
-          (route) => false);
+    goToPage(bool isUser) {
+      Role.setIsUser(isUser: isUser).then(
+        (value) {
+          ScreenStateManager.setPageOrderID(2);
+          return Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            ),
+            (route) => false,
+          );
+        },
+      );
     }
+
+    // goToPage() {
+    //   return Navigator.pushAndRemoveUntil(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => const LoginScreen(),
+    //       ),
+    //       (route) => false);
+    // }
 
     return Scaffold(
       body: SafeArea(
@@ -54,8 +58,8 @@ class RoleScreen extends StatelessWidget {
                   children: [
                     RoleCard(
                       onTap: () {
-                        goToPage();
-                        //goToPage(false);
+                        ///goToPage();
+                        goToPage(false);
                       },
                       header: 'As an Expert',
                       subtitle: 'Recieve job offers from customers.',
@@ -64,8 +68,8 @@ class RoleScreen extends StatelessWidget {
                     ),
                     RoleCard(
                       onTap: () {
-                        goToPage();
-                        // goToPage(true);
+                        ///goToPage();
+                        goToPage(true);
                       },
                       header: 'As a Customer',
                       subtitle: 'Find & hire experts to consult with them.',

@@ -5,6 +5,8 @@ import 'package:wasta/screens/role_screen.dart';
 
 import '../components/components_barrel.dart';
 import '../navigation/navigator.dart';
+import '../providers/auth_provider.dart';
+import '../shared_preferences/shared_pref_barrel.dart';
 
 String? phoneNumberOnBoarding;
 
@@ -101,7 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Align(
                           alignment: Alignment.topRight,
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              getPage(context, const RoleScreen());
+                            },
                             child: AnimatedSlide(
                               duration: const Duration(milliseconds: 500),
                               //direction: Direction.left,
@@ -123,9 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 child: Center(
                                   child: textLabel(
-                                      text: 'I\'m expert',
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400),
+                                    text: 'Change role',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
                             ),
@@ -249,15 +254,23 @@ class _LoginScreenState extends State<LoginScreen> {
                               context: context,
                               isActive: isActive,
                               onSubmitted: (value) {
-                                if (phoneNumberRegex
-                                    .hasMatch(countryCode + phoneNumber.text)) {
-                                  //sendOtpCode();
-                                  isActive = false;
-                                  isLoading = true;
-                                  setState(() {});
-                                } else {
-                                  errorMessage =
-                                      '*Phone number is not in a correct format';
+                                if (phoneNumber.text.isNotEmpty) {
+                                  if (phoneNumberRegex.hasMatch(
+                                    countryCode +
+                                        phoneNumber.text
+                                            .replaceAll(' ', '')
+                                            .trim(),
+                                  )) {
+                                    //sendOtpCode();
+                                    sendOtpCode();
+                                    isActive = false;
+                                    isLoading = true;
+
+                                    setState(() {});
+                                  } else {
+                                    errorMessage =
+                                        '*Phone number is not in a correct format';
+                                  }
                                 }
                               },
                               onTap: () {
@@ -298,6 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //sendOtpCode();
                           isActive = false;
                           isLoading = true;
+                          sendOtpCode();
                         } else {
                           errorMessage =
                               '*Phone number is not in a correct format';
@@ -311,11 +325,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       size: Size(62.48.w, 60.h),
                     ),
                   ),
-                  secondaryButton(
-                      label: 'Skip for now',
-                      onPressed: () {
-                        //getPage(context, const AllScreens());
-                      }),
+                  // secondaryButton(
+                  //     label: 'Skip for now',
+                  //     onPressed: () {
+                  //       //getPage(context, const AllScreens());
+                  //     }),
                 ],
               ),
             ),
@@ -325,11 +339,21 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // void sendOtpCode() {
-  //   final ap = Provider.of<AuthProvider>(context, listen: false);
-  //   String phoneNum = phoneNumber.text.trim();
-  //   //debugPrint(countryCode + phoneNum);
-  //   phoneNumberOnBoarding = '$countryCode$phoneNum';
-  //   ap.signInWithPhone(context, "+$countryCode$phoneNum");
-  // }
+  void sendOtpCode() {
+    //print('The Value : ${Role.getRole()}');
+    final ap = Provider.of<AuthProvider>(context, listen: false);
+    String phoneNum = phoneNumber.text.trim();
+    //+9647518070601
+    phoneNumberOnBoarding = '$countryCode${phoneNum.replaceAll(' ', '')}';
+    //print(phoneNumberOnBoarding);
+    ap.checkExistingPhone(phoneNumberOnBoarding!).then((value) {
+      if (value) {
+        errorMessage = 'This phone number is already registered.';
+        isLoading = false;
+        setState(() {});
+      } else {
+        ap.signInWithPhone(context, "+$countryCode$phoneNum");
+      }
+    });
+  }
 }

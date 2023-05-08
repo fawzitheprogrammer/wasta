@@ -1,4 +1,10 @@
 import 'package:wasta/components/components_barrel.dart';
+import 'package:wasta/components/contants.dart';
+import 'package:wasta/components/firebase_vars.dart';
+import 'package:wasta/navigation/navigator.dart';
+import 'package:wasta/providers/appointment_provider.dart';
+import 'package:wasta/screens/users_screen/list_of_users.dart';
+import 'package:wasta/screens/users_screen/search_results.dart';
 
 import '../../public_packages.dart';
 
@@ -32,28 +38,43 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(16.0.w),
                 child: Row(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Welcome! 🖐',
-                          style: GoogleFonts.poppins(
-                            fontSize: 18.sp,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            //fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          'Lana Khdr',
-                          style: GoogleFonts.poppins(
-                              fontSize: 28.sp,
-                              color: primaryBlue,
-                              fontWeight: FontWeight.w600
-                              //fontWeight: FontWeight.w500,
+                    StreamBuilder(
+                      stream: firebaseFirestore
+                          .collection('users')
+                          .doc(AppointmentProvider.currentUser!.uid)
+                          .snapshots(),
+                      builder: (context, snapshots) {
+                        if (snapshots.connectionState ==
+                            ConnectionState.waiting) {
+                          return Container();
+                        }
+
+                        final user = snapshots.data;
+
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Welcome! 🖐',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18.sp,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                //fontWeight: FontWeight.w500,
                               ),
-                        )
-                      ],
+                            ),
+                            Text(
+                              user!['name'],
+                              style: GoogleFonts.poppins(
+                                  fontSize: 28.sp,
+                                  color: primaryBlue,
+                                  fontWeight: FontWeight.w600
+                                  //fontWeight: FontWeight.w500,
+                                  ),
+                            )
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -61,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: TextField(
+                  autofocus: false,
                   controller: controller,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
@@ -102,28 +124,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   cursorColor: Theme.of(context).colorScheme.onPrimary,
                   onSubmitted: (String value) {
-                    // controller.text = value;
-                    // setState(() {});
+                    getPage(
+                      context,
+                      SearchAllUsers(
+                        selectedSpeciality: value,
+                      ),
+                    );
                   },
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Container(
-                    child: GridView.builder(
-                      itemCount: categories.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        childAspectRatio: 0.8.w,
+                  child: GridView.builder(
+                    itemCount: categories.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      childAspectRatio: 0.8.w,
+                    ),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => getPage(
+                        context,
+                        AllUsers(
+                          selectedSpeciality: categoriesLabel[index],
+                        ),
                       ),
-                      itemBuilder: (context, index) => Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Container(
                           // height: 60.h,
                           // width: 100.w,
                           decoration: BoxDecoration(
-                              color: backgroundGrey1,
+                              color: themeColor(context).primaryContainer,
                               borderRadius: BorderRadius.circular(2.r)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

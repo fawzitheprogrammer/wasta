@@ -1,11 +1,19 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:wasta/providers/appointment_provider.dart';
 import 'package:wasta/public_packages.dart';
 import 'package:wasta/screens/login_screen.dart';
+import 'package:wasta/screens/professionals_screen/expert_information_screen.dart';
+import 'package:wasta/screens/users_screen/user_registration_form.dart';
 
 import '../components/components_barrel.dart';
+import '../main.dart';
 import '../navigation/navigator.dart';
+import '../providers/auth_provider.dart';
+import '../shared_preferences/role.dart';
+import '../shared_preferences/screens_state_manager.dart';
 
 class OTPVerification extends StatefulWidget {
   final String verificationId;
@@ -64,9 +72,9 @@ class _OTPVerificationState extends State<OTPVerification> {
 
   @override
   Widget build(BuildContext context) {
-    //final ap = Provider.of<AuthProvider>(context, listen: false);
+    final ap = Provider.of<AuthProvider>(context, listen: false);
 
-    //Color errorBorder = backgroundGrey1;
+    Color errorBorder = backgroundGrey1;
 
     return Scaffold(
       body: SafeArea(
@@ -95,7 +103,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                 ),
               ),
               Text(
-                '+9647510101010',
+                phoneNumberOnBoarding!,
                 style: GoogleFonts.poppins(
                   fontSize: 18.sp,
                   color: Theme.of(context).colorScheme.onPrimary,
@@ -120,13 +128,13 @@ class _OTPVerificationState extends State<OTPVerification> {
               ),
               OtpTextField(
                 onSubmit: (value) {
-                  // verifyOtp(context, value);
-                  // if (ap.errorBorder == Colors.redAccent) {
-                  //   //debugPrint(ap.errorBorder.toString());
-                  //   //clearText = true;
-                  // }
-                  // setState(() {});
-                  // clearText = false;
+                  verifyOtp(context, value);
+                  if (ap.errorBorder == Colors.redAccent) {
+                    //debugPrint(ap.errorBorder.toString());
+                    //clearText = true;
+                  }
+                  setState(() {});
+                  clearText = false;
                 },
                 numberOfFields: 6,
                 showFieldAsBox: true,
@@ -194,82 +202,83 @@ class _OTPVerificationState extends State<OTPVerification> {
     );
   }
 
-//   void verifyOtp(BuildContext context, String userOtp) {
-//     final ap = Provider.of<AuthProvider>(context, listen: false);
-//     ap.verifyOtp(
-//       context: context,
-//       verificationId: widget.verificationId,
-//       userOtp: userOtp,
-//       onSuccess: () {
-//         // checking whether user exists in the db
+  void verifyOtp(BuildContext context, String userOtp) {
+    final ap = Provider.of<AuthProvider>(context, listen: false);
+    ap.verifyOtp(
+      context: context,
+      verificationId: widget.verificationId,
+      userOtp: userOtp,
+      onSuccess: () {
+        AppointmentProvider.currentUser = FirebaseAuth.instance.currentUser;
 
-//         ap.checkExistingUser().then(
-//           (value) async {
-//             if (Role.getRole() == true) {
-//               if (value == true) {
-//                 // user exists in our app
-//                 ap.getUserDataFromFirestore().then(
-//                       (value) => ap.saveUserDataToSP().then(
-//                             (value) => ap.setSignIn().then((value) {
-//                               ScreenStateManager.setPageOrderID(3);
-//                               ap.errorBorder = backgroundGrey1;
-//                               Navigator.pushAndRemoveUntil(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                   builder: (context) => const AllScreens(),
-//                                 ),
-//                                 (route) => false,
-//                               );
-//                             }),
-//                           ),
-//                     );
-//               } else {
-//                 ScreenStateManager.setPageOrderID(2);
-//                 ap.errorBorder = backgroundGrey1;
-//                 // new user
-//                 Navigator.pushAndRemoveUntil(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => const UserInfromationScreen(),
-//                   ),
-//                   (route) => false,
-//                 );
-//               }
-//             } else {
-//               if (value == true) {
-//                 // user exists in our app
-//                 ap.getDoctorDataFromFirestore().then(
-//                       (value) => ap.saveDoctorDataToSP().then(
-//                             (value) => ap.setSignIn().then((value) {
-//                               ScreenStateManager.setPageOrderID(3);
-//                               ap.errorBorder = backgroundGrey1;
-//                               Navigator.pushAndRemoveUntil(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                   builder: (context) => const AllScreens(),
-//                                 ),
-//                                 (route) => false,
-//                               );
-//                             }),
-//                           ),
-//                     );
-//               } else {
-//                 ScreenStateManager.setPageOrderID(2);
-//                 ap.errorBorder = backgroundGrey1;
-//                 // new doctor
-//                 Navigator.pushAndRemoveUntil(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => const DoctorInfromationScreen(),
-//                   ),
-//                   (route) => false,
-//                 );
-//               }
-//             }
-//           },
-//         );
-//       },
-//     );
-//   }
-// }
+        print(AppointmentProvider.currentUser);
+
+        ap.checkExistingUser().then(
+          (value) async {
+            if (Role.getRole() == true) {
+              if (value == true) {
+                // user exists in our app
+                ap.getUserDataFromFirestore().then(
+                      (value) => ap.saveUserDataToSP().then(
+                            (value) => ap.setSignIn().then((value) {
+                              ScreenStateManager.setPageOrderID(3);
+                              ap.errorBorder = backgroundGrey1;
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const AllScreens(),
+                                ),
+                                (route) => false,
+                              );
+                            }),
+                          ),
+                    );
+              } else {
+                ScreenStateManager.setPageOrderID(2);
+                ap.errorBorder = backgroundGrey1;
+                // new user
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UserInfromationScreen(),
+                  ),
+                  (route) => false,
+                );
+              }
+            } else {
+              if (value == true) {
+                // user exists in our app
+                ap.getExpertDataFromFirestore().then(
+                      (value) => ap.saveExpertDataToSP().then(
+                            (value) => ap.setSignIn().then((value) {
+                              ScreenStateManager.setPageOrderID(3);
+                              ap.errorBorder = backgroundGrey1;
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const AllScreens(),
+                                ),
+                                (route) => false,
+                              );
+                            }),
+                          ),
+                    );
+              } else {
+                ScreenStateManager.setPageOrderID(2);
+                ap.errorBorder = backgroundGrey1;
+                // new doctor
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExpertRegistrationForm(),
+                  ),
+                  (route) => false,
+                );
+              }
+            }
+          },
+        );
+      },
+    );
+  }
 }

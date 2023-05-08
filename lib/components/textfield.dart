@@ -1,21 +1,26 @@
 import 'package:wasta/components/components_barrel.dart';
 
 import '../public_packages.dart';
+import 'contants.dart';
 
-Widget textField({
-  required TextEditingController controller,
-  Function()? onTap,
-  Function(String)? onSubmitted,
-  required bool isActive,
-  String? hintText,
-  required BuildContext context,
-}) {
+Widget textField(
+    {TextEditingController? controller,
+    Function()? onTap,
+    Function(String)? onSubmitted,
+    required bool isActive,
+    String? hintText,
+    required BuildContext context,
+    Widget? suffixIcon,
+    TextInputType? keyboardType,
+    FocusNode? focusNode}) {
   return TextField(
+    focusNode:focusNode ,
     //toolbarOptions:
     //ToolbarOptions(copy: true, paste: true, cut: true, selectAll: true),
     controller: controller,
     onTap: onTap,
     onSubmitted: onSubmitted,
+    autofocus: false,
     style: GoogleFonts.poppins(
       fontSize: 14.sp,
       color: darkGrey2,
@@ -44,9 +49,10 @@ Widget textField({
         color: Theme.of(context).colorScheme.onPrimary,
         //fontWeight: FontWeight.w500,
       ),
+      suffixIcon: suffixIcon,
     ),
     //selectionHeightStyle: BoxHeightStyle.,
-    keyboardType: TextInputType.number,
+    keyboardType: keyboardType ?? TextInputType.streetAddress,
     cursorColor: Theme.of(context).colorScheme.onPrimary,
   );
 }
