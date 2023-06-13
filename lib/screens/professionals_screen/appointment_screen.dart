@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wasta/components/components_barrel.dart';
-import 'package:wasta/navigation/navigator.dart';
 import 'package:wasta/public_packages.dart';
 
 import 'package:intl/intl.dart';
@@ -135,7 +134,7 @@ class ExpertAppointmentScreens extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Column(
                               children: [
                                 SvgPicture.asset(

@@ -1,8 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../firebase_options.dart';
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -101,42 +99,3 @@ void listenFCM() async {
 
 
 
-
-
-
-
-
-
-// Future<void> initNotifications() async {
-//   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
-
-//   const AndroidInitializationSettings initializationSettingsAndroid =
-//       AndroidInitializationSettings('launch_background');
-//   final InitializationSettings initializationSettings =
-//       InitializationSettings(android: initializationSettingsAndroid);
-
-//   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-// }
-
-// Future showBigTextNotification(
-//     {var id = 0,
-//     required String title,
-//     required String body,
-//     var payload,
-//     required FlutterLocalNotificationsPlugin fln}) async {
-//   AndroidNotificationDetails androidPlatformChannelSpecifics =
-//       const AndroidNotificationDetails(
-//     'your_channel_id',
-//     'your_channel_name',
-//     'your_channel_description',
-//     playSound: true,
-//     //sound: RawResourceAndroidNotificationSound().sound,
-//     importance: Importance.max,
-//     priority: Priority.high,
-//   );
-
-//   var not = NotificationDetails(
-//       android: androidPlatformChannelSpecifics, iOS: IOSNotificationDetails());
-//   await fln.show(0, title, body, not);
-// }

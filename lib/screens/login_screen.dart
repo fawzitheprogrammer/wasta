@@ -6,7 +6,6 @@ import 'package:wasta/screens/role_screen.dart';
 import '../components/components_barrel.dart';
 import '../navigation/navigator.dart';
 import '../providers/auth_provider.dart';
-import '../shared_preferences/shared_pref_barrel.dart';
 
 String? phoneNumberOnBoarding;
 

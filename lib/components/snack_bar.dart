@@ -1,6 +1,5 @@
 import 'package:wasta/components/components_barrel.dart';
 import 'package:wasta/public_packages.dart';
-import 'package:flutter/material.dart';
 
 void showSnackBar(
     {required BuildContext context,
@@ -21,7 +20,7 @@ void showSnackBar(
         children: [
           !isFalse
               ? Container()
-              : Icon(
+              : const Icon(
                   Icons.info,
                   color: Colors.white,
                 ),

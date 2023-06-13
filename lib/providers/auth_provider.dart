@@ -107,7 +107,7 @@ class AuthProvider extends ChangeNotifier {
       }
       _isLoading = false;
       notifyListeners();
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       errorBorder = Colors.redAccent;
       //showSnackBar(context, e.message.toString());
       _isLoading = false;

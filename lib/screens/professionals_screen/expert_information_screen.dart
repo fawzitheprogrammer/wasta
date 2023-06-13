@@ -119,7 +119,7 @@ class _ExpertRegistrationFormState extends State<ExpertRegistrationForm> {
                                 controller: experienceController,
                               ),
                               textFeld(
-                                hintText: "\$Price/Day",
+                                hintText: "\$Price/Hour",
                                 icon: Icons.account_circle,
                                 inputType: TextInputType.number,
                                 maxLines: 1,

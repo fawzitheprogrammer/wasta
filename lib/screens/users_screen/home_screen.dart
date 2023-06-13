@@ -9,7 +9,7 @@ import 'package:wasta/screens/users_screen/search_results.dart';
 import '../../public_packages.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

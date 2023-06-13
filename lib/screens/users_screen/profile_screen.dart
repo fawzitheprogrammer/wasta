@@ -1,8 +1,5 @@
 // ignore: unnecessary_import
-import 'dart:math';
 
-import 'package:wasta/components/text.dart';
-import 'package:wasta/providers/appointment_provider.dart';
 import 'package:wasta/public_packages.dart';
 import 'package:wasta/screens//role_screen.dart';
 import 'package:wasta/shared_preferences/screens_state_manager.dart';

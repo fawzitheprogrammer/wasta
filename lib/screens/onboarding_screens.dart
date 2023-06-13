@@ -1,7 +1,6 @@
 import 'package:wasta/components/components_barrel.dart';
 import 'package:wasta/navigation/navigator.dart';
 import 'package:wasta/public_packages.dart';
-import 'package:wasta/screens/login_screen.dart';
 import 'package:wasta/screens/role_screen.dart';
 
 import '../shared_preferences/screens_state_manager.dart';

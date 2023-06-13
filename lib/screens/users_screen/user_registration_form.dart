@@ -5,6 +5,7 @@ import 'package:wasta/main.dart';
 import 'package:wasta/models/user_model.dart';
 import 'package:wasta/public_packages.dart';
 import '../../providers/auth_provider.dart';
+import '../../shared_preferences/screens_state_manager.dart';
 
 class UserInfromationScreen extends StatefulWidget {
   const UserInfromationScreen({super.key});
@@ -270,8 +271,10 @@ class _UserInfromationScreenState extends State<UserInfromationScreen> {
         userModel: userModel,
         profilePic: image!,
         onSuccess: () {
+           ScreenStateManager.setPageOrderID(2);
           ap.saveUserDataToSP().then(
                 (value) => ap.setSignIn().then(
+                  
                       (value) => Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

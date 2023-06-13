@@ -1,6 +1,5 @@
 // ignore: implementation_imports
 import 'dart:async';
-import 'dart:math';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +10,6 @@ import 'package:wasta/components/time_format.dart';
 import 'package:wasta/providers/appointment_provider.dart';
 import 'package:wasta/providers/auth_provider.dart';
 import 'package:wasta/providers/date_time_card_provider.dart';
-import 'package:wasta/providers/slider_provider.dart';
 import 'package:wasta/public_packages.dart';
 import 'package:wasta/screens/users_screen/success_screen.dart';
 
@@ -81,7 +79,6 @@ class _UserScreenState extends State<UserScreen> {
     });
   }
 
-  static final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   TextEditingController? location = TextEditingController();
 

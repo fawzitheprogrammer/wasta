@@ -1,20 +1,20 @@
 import 'package:wasta/components/components_barrel.dart';
 
 import '../public_packages.dart';
-import 'contants.dart';
 
-Widget textField(
-    {TextEditingController? controller,
-    Function()? onTap,
-    Function(String)? onSubmitted,
-    required bool isActive,
-    String? hintText,
-    required BuildContext context,
-    Widget? suffixIcon,
-    TextInputType? keyboardType,
-    FocusNode? focusNode}) {
+Widget textField({
+  TextEditingController? controller,
+  Function()? onTap,
+  Function(String)? onSubmitted,
+  required bool isActive,
+  String? hintText,
+  required BuildContext context,
+  Widget? suffixIcon,
+  TextInputType? keyboardType,
+  FocusNode? focusNode,
+}) {
   return TextField(
-    focusNode:focusNode ,
+    focusNode: focusNode,
     //toolbarOptions:
     //ToolbarOptions(copy: true, paste: true, cut: true, selectAll: true),
     controller: controller,

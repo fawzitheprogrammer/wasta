@@ -19,7 +19,7 @@ Color primaryBlue40Percent = const Color.fromARGB(255, 101, 199, 255);
 
 Color primaryBlue70Percent = const Color.fromARGB(255, 89, 191, 251);
 
-Color bottomNavbarBg = Color.fromARGB(255, 212, 237, 252);
+Color bottomNavbarBg = const Color.fromARGB(255, 212, 237, 252);
 
 Color secondaryColor = const Color(0xffF48C00);
 
